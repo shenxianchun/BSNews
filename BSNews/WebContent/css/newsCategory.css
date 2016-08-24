@@ -1,0 +1,40 @@
+@charset "utf-8";
+.num_text{
+border:none;
+width:90%;
+height:90%;
+text-align:center;
+}
+.category_text{
+border:none;
+width:90%;
+height:90%;
+text-align:center;
+}
+/*background-image: '' !important;    vertical-align: middle;*/
+#newsCategory button{
+margin-right:15px;
+}
+.submit{
+display:none;
+}
+.checked{
+checked:checked;
+}
+#logo{
+width:150px;
+height:150px;
+margin-left:500px;
+}
+.baishi{
+position:absolute;
+top:32px;
+left:676px;
+color:#0000FF;
+font-weight:900;
+font-size:24px;
+font-family:"微软雅黑";
+height:60px;
+padding-top:40px;
+width:140px;
+}

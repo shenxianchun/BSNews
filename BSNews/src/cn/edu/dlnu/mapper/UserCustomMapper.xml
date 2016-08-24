@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.dlnu.mapper.UserCustomMapper">
+
+	<!-- 定义商品查询的sql片段 -->
+	<sql id="query_user_where">
+		<!-- 使用动态sql，满足条件进行sql拼接 -->
+		<!-- 登录查询条件通过UserQueryVo包装对象中userCustom属性传递 -->
+		<if test="userCustom!=null">
+			<if test="userCustom.username!=null and userCustom.username!='' and userCustom.password != null and userCustom.password != null">
+				username=#{userCustom.username} and
+				password=#{userCustom.password}
+			</if>
+		</if>
+
+	</sql>
+
+	<sql id="Base_Column_List">
+		id, username, password, sex, birthday, email, image,
+		registtime
+	</sql>
+	<select id="findByNameAndPassword" parameterType="cn.edu.dlnu.po.UserCustom"
+		resultType="cn.edu.dlnu.po.UserCustom">
+		<!-- <if test="userCustom !=null">
+			select
+			<include refid="Base_Column_List" />
+			from user
+			<where>
+				<include refid="query_user_where"/>
+			</where>
+		</if> -->
+		select * from user where username=#{username} and password=#{password}
+	</select>
+</mapper>

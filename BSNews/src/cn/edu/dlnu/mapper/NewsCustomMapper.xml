@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.dlnu.mapper.NewsCustomMapper" >
+<!-- 根据点击率查询热门新闻提取前10条-->
+  <select id="findByClickRatio" resultType="cn.edu.dlnu.po.NewsCustom">
+  	SELECT
+			n.id,
+			n.title,
+			(
+				SELECT
+					c.clickratio
+				FROM
+					clickratio c
+				WHERE
+					c.nid = n.id
+				ORDER BY c.clicktime DESC
+				LIMIT 0,1
+			) AS "clickratio"
+		FROM
+			news n
+		GROUP BY
+			"clickratio" DESC
+		LIMIT 0,6
+  </select>
+  <!-- 按时间排序并且image不为空 -->
+  <select id="findByTime" resultType="cn.edu.dlnu.po.NewsCustom">
+		<![CDATA[
+		SELECT
+			*
+		FROM
+			news n
+		WHERE 
+			n.image <> 1
+		ORDER BY
+			n.publishtime DESC
+	]]>
+  </select>
+</mapper>
